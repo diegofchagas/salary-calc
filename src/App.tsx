@@ -1,12 +1,12 @@
 import "./App.css";
 import { FormControlInputs } from "./components/FormControlInputs";
+import { Result } from "./components/Result";
 
 export const App = () => {
   return (
     <>
-      <p>oi</p>
-
-      <FormControlInputs/>
+      {/* <FormControlInputs/> */}
+      <Result/>
     </>
   );
 };
