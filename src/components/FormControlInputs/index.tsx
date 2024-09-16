@@ -1,15 +1,32 @@
-import { HeaderForm } from "./style"
+import { Buttons, Container, ContainerInputs, Forms} from "./style";
 
-export const FormControlInputs  = () => {
+export const FormControlInputs = () => {
   return (
-
-    <HeaderForm>
+    <Container>
       <h3>Calculadora Salário Líquido</h3>
-    <form>
-      <input type="number" placeholder="Informe seu salário"/>
-      <input type="number" placeholder="Descontos" />
-      <input type="number" placeholder="Dependentes" />
-    </form>
-    </HeaderForm>
-  )
-}
+      <Forms>
+        <ContainerInputs>
+          <div className="inputs">
+            <label>Salário bruto:</label>
+            <input type="number" placeholder="R$0.000,00"/>
+          </div>
+
+          <div className="inputs">
+            <label>Descontos:</label>
+            <input type="number" placeholder="R$0.000,00" />
+          </div>
+
+          <div className="inputs">
+            <label>Número de dependentes:</label>
+            <input type="number" placeholder="0" />
+          </div>
+        </ContainerInputs>
+
+        <Buttons>
+          <button>Calcular</button>
+          <button>Limpar</button>
+        </Buttons>
+      </Forms>
+    </Container>
+  );
+};
