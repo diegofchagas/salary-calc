@@ -3,6 +3,9 @@ export const Result = () => {
     <table>
       <thead>
         <tr>
+          <td>Calculadora de Salário</td>
+        </tr>
+        <tr>
           <th>Descrição</th>
           <th>Alíquota</th>
           <th>Proventos</th>
@@ -27,13 +30,19 @@ export const Result = () => {
           <td>IRRF</td>
           <td>15.00%</td>
           <td>-</td>
-          <td>285,15</td>
+          <td>R$285,15</td>
         </tr>
         <tr>
           <td>Total</td>
           <td>-</td>
-          <td>4000</td>
-          <td>600</td>
+          <td>R$4000</td>
+          <td>R$600</td>
+        </tr>
+        <tr>
+          <td>Valor liquido a receber: </td>
+          <td>-</td>
+          <td>-</td>
+          <td>R$3000</td>
         </tr>
       </tbody>
     </table>
