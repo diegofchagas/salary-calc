@@ -1,9 +1,9 @@
-import { Buttons, Container, ContainerInputs, Forms} from "./style";
+import {Container, ContainerInputs, Forms,ContainerButtons, CalculateButton, CleanButton} from "./style";
 
 export const FormControlInputs = () => {
   return (
     <Container>
-      <h3>Calculadora Salário Líquido</h3>
+      <div> <span>Calculadora Salário Líquido</span></div>
       <Forms>
         <ContainerInputs>
           <div className="inputs">
@@ -22,10 +22,10 @@ export const FormControlInputs = () => {
           </div>
         </ContainerInputs>
 
-        <Buttons>
-          <button>Calcular</button>
-          <button>Limpar</button>
-        </Buttons>
+        <ContainerButtons>
+          <CalculateButton>Calcular</CalculateButton>
+          <CleanButton>Limpar</CleanButton>
+        </ContainerButtons>
       </Forms>
     </Container>
   );

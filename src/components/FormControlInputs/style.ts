@@ -4,8 +4,19 @@ export const Container = styled.div`
     width: 800px;
     border: 1px solid black;
     border-radius: 30px;
-    h3 {
+    margin-top: 2rem;
+    margin-left:2rem;
+    > div {
         text-align: center;
+        font-weight:700;
+        color:white;
+        background-color:black;
+        border-radius: 30px 30px 0 0;
+        padding: .700rem .940rem;
+
+        span{
+            font-size:1.3rem;
+        }
     }
 `;
 
@@ -38,9 +49,25 @@ export const ContainerInputs = styled.div`
     }
 `;
 
-export const Buttons = styled.div`
+export const ContainerButtons = styled.div`
     display:flex;
     justify-content:center;
     gap: 20px;
     padding: 0 30px 30px;
+`;
+
+export const CalculateButton = styled.button`
+border:none;
+padding: 1rem 1.5rem;
+font-weight:700;
+cursor: pointer;
+border-radius:30px;
+`;
+
+export const CleanButton = styled.button`
+border:none;
+padding: 1rem 1.5rem;
+font-weight:700;
+cursor: pointer;
+border-radius:30px;
 `;
