@@ -7,7 +7,7 @@ export const ContainerResults = styled.div`
     width: 35%;
     height: 4px;
     background-color: black;
-    margin: 40px 215px;
+    margin: 40px 270px; 
     border-radius: 15px;
   }
 `;

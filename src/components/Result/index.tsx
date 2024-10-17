@@ -1,6 +1,17 @@
 import { ContainerResults, Table } from "./style";
 
-export const Results = () => {
+interface ResultsProps{
+  results:{
+    grossSalary:number;
+    inss:number;
+    irrf:number;
+    netSalary:number;
+    discountTotals:number
+
+  }
+}
+
+export const Results = ({results}: ResultsProps) => {
   return (
     <ContainerResults>
       <div className="line"></div>
@@ -19,7 +30,7 @@ export const Results = () => {
           <tr>
             <td scope="row">Salário Bruto</td>
             <td>-</td>
-            <td>R$4.000,00</td>
+            <td>R${results.grossSalary}</td>
             <td>-</td>
           </tr>
           <tr>
@@ -28,19 +39,19 @@ export const Results = () => {
             </td>
             <td>14.00%</td>
             <td>-</td>
-            <td>R$480,00</td>
+            <td>R${results.inss}</td>
           </tr>
           <tr>
             <td scope="row">IRRF</td>
             <td>15.00%</td>
             <td>-</td>
-            <td>R$285,15</td>
+            <td>R${results.irrf}</td>
           </tr>
           <tr>
             <td scope="row">Totais</td>
             <td>-</td>
-            <td>R$4000</td>
-            <td>R$600</td>
+            <td>R${results.grossSalary}</td>
+            <td>R${results.discountTotals}</td>
           </tr>
         </tbody>
         <tfoot>
@@ -48,7 +59,7 @@ export const Results = () => {
             <td scope="row" colSpan={3}>
               Valor liquido a receber:{" "}
             </td>
-            <td>R$3.000</td>
+            <td>R${results.netSalary}</td>
           </tr>
         </tfoot>
       </Table>

@@ -1,11 +1,9 @@
-import { FormControlInputs } from "./components/FormControlInputs";
-import { Result } from "./components/Result";
+import { Home } from "./pages/Home";
 
 export const App = () => {
   return (
     <>
-      <FormControlInputs/>
-      {/* <Result/> */}
+    <Home/>
     </>
   );
 };
