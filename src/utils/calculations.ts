@@ -21,24 +21,34 @@ const inrpfQuotes: Quotes[] = [
   {limite: Infinity, cotacao: 0.275, deducao: 896}
 ]
 
+interface inssResult{
+  value: number;
+  aliquot:number
+}
 
-export function calculoInss(salario: number): number {
+export function calculoInss(salario: number): inssResult | undefined {
   const valorInss = inssQuotes.find((cotacao)=> salario <= cotacao.limite);
-  if(salario > 7507.49 ){
-   const inss = 876.95
-   return inss
+  if(salario > 7786.02 ){
+    return {
+      value:876.95, aliquot: 0.14
+    }
+   //const inss = 876.95
+   //return inss
    
   } else if (valorInss){
    const inss = salario * valorInss.cotacao - valorInss.deducao
-   return Math.max(inss, 0)
+   return {value:Math.max(inss, 0), aliquot:valorInss.cotacao }
   }else{
    console.log('Salário fora da faixa do INSS');
-   return 0
   }
  }
-
  
- export function calculoIrpf(salario:number,inss:number,dependentes:number): number {
+ interface irpfResults {
+  value:number;
+  aliquot: number
+ }
+ 
+ export function calculoIrpf(salario:number,inss:number,dependentes:number): irpfResults {
   const descontoSimplificado = 564.8;
   const deducaoDependentes = dependentes * 189.59
   const deducoes = inss + deducaoDependentes;
@@ -51,25 +61,38 @@ export function calculoInss(salario: number): number {
     base = salario - deducoes
   }
 
+  base = Math.max(base,0)
+
   const valorIrpf = inrpfQuotes.find(cotacao => base <= cotacao.limite)
 
   if(valorIrpf){
     const irpf = base * valorIrpf.cotacao - valorIrpf.deducao
-    return parseFloat(irpf.toFixed(2))
+    return  {
+      value:parseFloat(irpf.toFixed(2)), 
+      aliquot:valorIrpf.cotacao
+    }
   }
 
   else{
-    console.log("Salário fora da faixa")
-    return 0;
+    return {
+      value:0,
+      aliquot:0
+    }
   }
 
 }
 
 export function calculoSalario (salario:number, dependentes:number) {
   const inss = calculoInss(salario)
-  const irrf = calculoIrpf(salario, inss ?? 0, dependentes)
+  if(inss === undefined) {
+    return undefined
+  }
+  const irrf = calculoIrpf(salario, inss?.value, dependentes)
+  if(irrf === undefined) {
+    return undefined;
+  }
   
-const salarioLiquido = salario - (inss ?? 0) - irrf;
+const salarioLiquido = salario - inss?.value - irrf?.value;
  return  parseFloat(salarioLiquido.toFixed(2)) 
 }
 

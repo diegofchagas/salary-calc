@@ -6,8 +6,9 @@ interface ResultsProps{
     inss:number;
     irrf:number;
     netSalary:number;
-    discountTotals:number
-
+    discountTotals:number;
+    aliquotInss: number;
+    aliquotIrpf: number;
   }
 }
 
@@ -37,13 +38,13 @@ export const Results = ({results}: ResultsProps) => {
             <td scope="row" className="pai">
               INSS
             </td>
-            <td>14.00%</td>
+            <td>{(results.aliquotInss * 100).toFixed(2)}%</td>
             <td>-</td>
             <td>R${results.inss}</td>
           </tr>
           <tr>
             <td scope="row">IRRF</td>
-            <td>15.00%</td>
+            <td>{(results.aliquotIrpf * 100).toFixed(2)}%</td>
             <td>-</td>
             <td>R${results.irrf}</td>
           </tr>
