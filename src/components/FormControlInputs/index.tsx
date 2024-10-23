@@ -7,9 +7,10 @@ interface InputsProps {
   onGrossSalary: (value:number) => void;
   onDiscounts: (value:number) => void;
   onDependents: (value:number) => void;
+  onTotalCalculation: () => void;
 }
 
-export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSalary, onDiscounts,onDependents}: InputsProps) => {
+export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSalary, onDiscounts,onDependents, onTotalCalculation}: InputsProps) => {
 
   return (
     <Container>
@@ -17,15 +18,15 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
         {" "}
         <span>Calculadora Salário Líquido</span>
       </div>
-      <Forms>
+      <Forms onSubmit={onTotalCalculation}>
         <ContainerInputs>
           <div className="inputs">
             <label>Salário bruto:</label>
             <input
-              type="number"
+              type="text"
               placeholder="R$0.000,00"
               value={grossSalary}
-              onChange={({ target }) => onGrossSalary(Number(target.value))}
+              onChange={({ target }) => onGrossSalary(parseFloat(target.value))}
             />
           </div>
 
@@ -35,7 +36,7 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
               type="number"
               placeholder="R$0.000,00"
               value={discounts}
-              onChange={({ target }) => onDiscounts(Number(target.value))}
+              onChange={({ target }) => onDiscounts(parseFloat(target.value))}
             />
           </div>
 
@@ -45,13 +46,13 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
               type="number"
               placeholder="0"
               value={dependents}
-              onChange={({ target }) => onDependents(Number(target.value))}
+              onChange={({ target }) => onDependents(parseFloat(target.value))}
             />
           </div>
         </ContainerInputs>
 
         <ContainerButtons>
-          <CalculateButton>Calcular</CalculateButton>
+          <CalculateButton type="submit">Calcular</CalculateButton>
           <CleanButton>Limpar</CleanButton>
         </ContainerButtons>
       </Forms>
