@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { FormControlInputs } from "../../components/FormControlInputs"
 import { Results } from "../../components/Result"
 import { ContainerHome } from "./style"
-import { calculoInss, calculoIrpf, calculoSalario} from "../../utils/calculations";
+import { calculationNetSalary, calculationOfIncomeTaxOnSalary, calculationSocialSecurity } from "../../utils/calculations";
 
 
 interface SalaryProps{
@@ -25,14 +25,14 @@ export const Home = () => {
 
   const handleCalculate = (e: FormEvent) => {
     e.preventDefault();
-    const inssResults = calculoInss(salary);
+    const inssResults = calculationSocialSecurity(salary);
     if (inssResults) {
       const { value: inss, aliquot: aliquotInss } = inssResults;
-      const irrfResults = calculoIrpf(salary, inss, dependents);
+      const irrfResults = calculationOfIncomeTaxOnSalary(salary, inss, dependents);
       const {value: irrf, aliquot:aliquotIrpf} = irrfResults
       if (irrf !== undefined) {
         const totalDisconts = inss + irrf;
-        const netSalary = calculoSalario(salary, dependents) ?? 0;
+        const netSalary = calculationNetSalary(salary, dependents) ?? 0;
   
         setResults({
           grossSalary: salary,

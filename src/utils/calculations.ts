@@ -1,75 +1,77 @@
 
 interface Quotes {
-  limite: number;
-  cotacao: number;
-  deducao: number;
+  limit: number;
+  quote: number;
+  deduction: number;
 
 }
 
 const inssQuotes : Quotes[] = [
-  {limite:1412, cotacao: 0.075, deducao: 0},
-  {limite:2666.68, cotacao: 0.09, deducao: 21.18},
-  {limite:4000.03, cotacao: 0.12, deducao: 101.18},
-  {limite:7786.02, cotacao: 0.14, deducao: 181.18}
+  {limit:1412, quote: 0.075, deduction: 0},
+  {limit:2666.68, quote: 0.09, deduction: 21.18},
+  {limit:4000.03, quote: 0.12, deduction: 101.18},
+  {limit:7786.02, quote: 0.14, deduction: 181.18}
 ]
 
 const inrpfQuotes: Quotes[] = [
-  {limite: 2259.20, cotacao: 0, deducao: 0},
-  {limite: 2826.65, cotacao: 0.075, deducao: 169.44},
-  {limite: 3751.05, cotacao: 0.15, deducao: 381.44},
-  {limite: 4664.68, cotacao: 0.225, deducao: 662.77},
-  {limite: Infinity, cotacao: 0.275, deducao: 896}
+  {limit: 2259.20, quote: 0, deduction: 0},
+  {limit: 2826.65, quote: 0.075, deduction: 169.44},
+  {limit: 3751.05, quote: 0.15, deduction: 381.44},
+  {limit: 4664.68, quote: 0.225, deduction: 662.77},
+  {limit: Infinity, quote: 0.275, deduction: 896}
 ]
 
 interface inssResult{
   value: number;
-  aliquot:number
+  aliquot:number;
 }
 
-export function calculoInss(salario: number): inssResult | undefined {
-  const valorInss = inssQuotes.find((cotacao)=> salario <= cotacao.limite);
-  if(salario > 7786.02 ){
+export function calculationSocialSecurity(wage: number): inssResult | undefined {
+  const valueSocialSecurity = inssQuotes.find((quotes) => wage <= quotes.limit);
+  if (wage > 7786.02) {
     return {
-      value:876.95, aliquot: 0.14
-    }
-   //const inss = 876.95
-   //return inss
-   
-  } else if (valorInss){
-   const inss = salario * valorInss.cotacao - valorInss.deducao
-   return {value:Math.max(inss, 0), aliquot:valorInss.cotacao }
-  }else{
-   console.log('Salário fora da faixa do INSS');
+      value: 876.95,
+      aliquot: 0.14,
+    };
+    //const inss = 876.95
+    //return inss
+  } else if (valueSocialSecurity) {
+    const inss =
+      wage * valueSocialSecurity.quote - valueSocialSecurity.deduction;
+    return { value: Math.max(inss, 0), aliquot: valueSocialSecurity.quote };
+  } else {
+    console.log("Salário fora da faixa do INSS");
   }
- }
+}
  
+
  interface irpfResults {
   value:number;
   aliquot: number
  }
  
- export function calculoIrpf(salario:number,inss:number,dependentes:number): irpfResults {
-  const descontoSimplificado = 564.8;
-  const deducaoDependentes = dependentes * 189.59
-  const deducoes = inss + deducaoDependentes;
-  let base;
+ export function calculationOfIncomeTaxOnSalary(wage:number,inss:number,dependents:number): irpfResults {
+  const simplifiedDiscount = 564.8;
+  const dependentDeduction = dependents * 189.59
+  const deductions = inss + dependentDeduction;
+  let calculationBasis;
 
-  if( deducoes <= descontoSimplificado) {
-     base = salario - descontoSimplificado
+  if( deductions <= simplifiedDiscount) {
+      calculationBasis = wage - simplifiedDiscount
   }
   else {
-    base = salario - deducoes
+      calculationBasis = wage - deductions
   }
 
-  base = Math.max(base,0)
+  calculationBasis = Math.max(calculationBasis,0)
 
-  const valorIrpf = inrpfQuotes.find(cotacao => base <= cotacao.limite)
+  const incomeTaxCalculationBasis = inrpfQuotes.find(quote => calculationBasis <= quote.limit)
 
-  if(valorIrpf){
-    const irpf = base * valorIrpf.cotacao - valorIrpf.deducao
+  if(incomeTaxCalculationBasis){
+    const incomeTaxSalaryValue = calculationBasis * incomeTaxCalculationBasis.quote - incomeTaxCalculationBasis.deduction
     return  {
-      value:parseFloat(irpf.toFixed(2)), 
-      aliquot:valorIrpf.cotacao
+      value:parseFloat(incomeTaxSalaryValue.toFixed(2)), 
+      aliquot:incomeTaxCalculationBasis.quote
     }
   }
 
@@ -82,17 +84,17 @@ export function calculoInss(salario: number): inssResult | undefined {
 
 }
 
-export function calculoSalario (salario:number, dependentes:number) {
-  const inss = calculoInss(salario)
+export function calculationNetSalary (wage:number, dependentes:number) {
+  const inss = calculationSocialSecurity(wage)
   if(inss === undefined) {
     return undefined
   }
-  const irrf = calculoIrpf(salario, inss?.value, dependentes)
+  const irrf = calculationOfIncomeTaxOnSalary(wage, inss?.value, dependentes)
   if(irrf === undefined) {
     return undefined;
   }
   
-const salarioLiquido = salario - inss?.value - irrf?.value;
+const salarioLiquido = wage - inss?.value - irrf?.value;
  return  parseFloat(salarioLiquido.toFixed(2)) 
 }
 
