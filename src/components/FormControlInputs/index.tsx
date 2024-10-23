@@ -1,3 +1,4 @@
+import { FormEvent } from "react";
 import {Container, ContainerInputs, Forms,ContainerButtons, CalculateButton, CleanButton} from "./style";
 
 interface InputsProps {
@@ -7,7 +8,7 @@ interface InputsProps {
   onGrossSalary: (value:number) => void;
   onDiscounts: (value:number) => void;
   onDependents: (value:number) => void;
-  onTotalCalculation: () => void;
+  onTotalCalculation: (e: FormEvent) => void;
 }
 
 export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSalary, onDiscounts,onDependents, onTotalCalculation}: InputsProps) => {
@@ -18,7 +19,7 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
         {" "}
         <span>Calculadora Salário Líquido</span>
       </div>
-      <Forms onSubmit={onTotalCalculation}>
+      <Forms onSubmit={(e) => onTotalCalculation(e)}>
         <ContainerInputs>
           <div className="inputs">
             <label>Salário bruto:</label>
