@@ -13,8 +13,15 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   } 
 
-  /* body{
-    width: 1200px;
-  } */
+  input, button, a{
+    font-family: "Inter", sans-serif;
+  }
+
+  body{
+    font-family: "Inter", sans-serif;
+    background: #F4F5FB;
+    -webkit-font-smoothing: antialiased;
+    
+  }
 
 `;
