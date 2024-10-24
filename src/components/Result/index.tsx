@@ -52,7 +52,7 @@ export const Results = ({results}: ResultsProps) => {
             <td scope="row">Totais</td>
             <td>-</td>
             <td>R${results.grossSalary}</td>
-            <td>R${results.discountTotals}</td>
+            <td className="total-discount">R${results.discountTotals}</td>
           </tr>
         </tbody>
         <tfoot>

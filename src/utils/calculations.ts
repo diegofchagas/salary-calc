@@ -95,6 +95,6 @@ export function calculationNetSalary (wage:number, dependentes:number) {
   }
   
 const netSalary = wage - inss?.value - irrf?.value;
- return  parseFloat(netSalary.toFixed(2)) 
+  return  parseFloat(netSalary.toFixed(2)) 
 }
 

@@ -13,7 +13,6 @@ interface SalaryProps{
   discountTotals: number;
   aliquotInss:number;
   aliquotIrpf: number
-
 }
 
 export const Home = () => {
