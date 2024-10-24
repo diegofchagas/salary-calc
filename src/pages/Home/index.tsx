@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { FormControlInputs } from "../../components/FormControlInputs"
 import { Results } from "../../components/Result"
 import { ContainerHome } from "./style"
-import { calculationNetSalary, calculationOfIncomeTaxOnSalary, calculationSocialSecurity } from "../../utils/calculations";
+import { calculateIncomeTax, calculateSocialSecurityContribution, calculationNetSalary } from "../../utils/calculations";
 
 
 interface SalaryProps{
@@ -25,15 +25,15 @@ export const Home = () => {
 
   const handleCalculate = (e: FormEvent) => {
     e.preventDefault();
-    const inssResults = calculationSocialSecurity(salary);
+    const inssResults = calculateSocialSecurityContribution(salary);
     if (inssResults) {
       const { value: inss, aliquot: aliquotInss } = inssResults;
-      const irrfResults = calculationOfIncomeTaxOnSalary(salary, inss, dependents);
+      const irrfResults = calculateIncomeTax(salary, inss, dependents);
       const {value: irrf, aliquot:aliquotIrpf} = irrfResults
       if (irrf !== undefined) {
         const totalDisconts = inss + irrf;
         const netSalary = calculationNetSalary(salary, dependents) ?? 0;
-  
+        
         setResults({
           grossSalary: salary,
           inss,
@@ -44,10 +44,10 @@ export const Home = () => {
           aliquotIrpf
         });
       } else {
-        console.log('Erro no cálculo do IRRF');
+        throw new Error('Erro no cálculo do IRRF');
       }
     } else {
-      console.log('Erro no cálculo do INSS');
+      throw new Error('Erro no cálculo do INSS');
     }
   };
   

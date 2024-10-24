@@ -26,7 +26,7 @@ interface inssResult{
   aliquot:number;
 }
 
-export function calculationSocialSecurity(wage: number): inssResult | undefined {
+export function calculateSocialSecurityContribution(wage: number): inssResult | undefined {
   const valueSocialSecurity = inssQuotes.find((quotes) => wage <= quotes.limit);
   if (wage > 7786.02) {
     return {
@@ -40,7 +40,7 @@ export function calculationSocialSecurity(wage: number): inssResult | undefined 
       wage * valueSocialSecurity.quote - valueSocialSecurity.deduction;
     return { value: Math.max(inss, 0), aliquot: valueSocialSecurity.quote };
   } else {
-    console.log("Salário fora da faixa do INSS");
+    throw new Error("Salário fora da faixa do INSS");
   }
 }
  
@@ -50,7 +50,7 @@ export function calculationSocialSecurity(wage: number): inssResult | undefined 
   aliquot: number
  }
  
- export function calculationOfIncomeTaxOnSalary(wage:number,inss:number,dependents:number): irpfResults {
+ export function calculateIncomeTax(wage:number,inss:number,dependents:number): irpfResults {
   const simplifiedDiscount = 564.8;
   const dependentDeduction = dependents * 189.59
   const deductions = inss + dependentDeduction;
@@ -85,16 +85,16 @@ export function calculationSocialSecurity(wage: number): inssResult | undefined 
 }
 
 export function calculationNetSalary (wage:number, dependentes:number) {
-  const inss = calculationSocialSecurity(wage)
+  const inss = calculateSocialSecurityContribution(wage)
   if(inss === undefined) {
     return undefined
   }
-  const irrf = calculationOfIncomeTaxOnSalary(wage, inss?.value, dependentes)
+  const irrf = calculateIncomeTax(wage, inss?.value, dependentes)
   if(irrf === undefined) {
     return undefined;
   }
   
-const salarioLiquido = wage - inss?.value - irrf?.value;
- return  parseFloat(salarioLiquido.toFixed(2)) 
+const netSalary = wage - inss?.value - irrf?.value;
+ return  parseFloat(netSalary.toFixed(2)) 
 }
 
