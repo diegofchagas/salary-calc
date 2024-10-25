@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 800px;
-     border: 0.5px solid black;
-    border-radius: 30px;
+    max-width: 50rem;
+    border: 1px solid #A52C6B;
+    border-radius: 1.875rem;
     margin-top: 2rem;
     margin-left:2rem;
     > div {
@@ -11,7 +11,7 @@ export const Container = styled.div`
         font-weight:700;
         color:white;
         background-color:#A52C6B;
-        border-radius: 30px 30px 0 0;
+        border-radius: 1.875rem 1.875rem 0 0;
         padding: .700rem .940rem;
 
         span{
@@ -22,7 +22,7 @@ export const Container = styled.div`
 
 export const Forms = styled.form`
     color: #000;
-    font-size: 16px;
+    font-size: 1rem;
 `;
 
 export const ContainerInputs = styled.div`
@@ -32,7 +32,7 @@ export const ContainerInputs = styled.div`
     padding: 1.25rem;
 
     .inputs {
-        width: 50%;
+        max-width: 50%;
         display: flex;
         flex-direction: column;
         padding: .625rem;
@@ -45,12 +45,17 @@ export const ContainerInputs = styled.div`
 
     input{
         border: 0;
-        min-height: 40px;
-        line-height: 40px;
+        min-height: 2.5rem;
+        line-height: 2.5rem;
         margin-top:.625rem;
         padding: 0 15px;
         box-shadow: 0 0 4px rgba(0, 0, 0, .1);
         border-radius: 11px;
+        outline:none;
+
+        &:focus{
+            outline: 2px solid #A52C6B; 
+        }
 
     }
 `;
@@ -58,7 +63,7 @@ export const ContainerInputs = styled.div`
 export const ContainerButtons = styled.div`
     display:flex;
     justify-content:center;
-    gap: 20px;
+    gap: 1.25rem;
     padding: 0 30px 30px;
 `;
 
@@ -74,7 +79,7 @@ color: #fff;
 transition: background-color 1s;
 
 &:hover{
-  background-color:#A52C6B;
+background-color:#A52C6B;
 }
 `;
 

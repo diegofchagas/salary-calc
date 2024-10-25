@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 export const ContainerResults = styled.div`
-  padding: 0 30px 30px;
+  padding: 0 1.875rem 1.875rem;
 
   .line{
     width: 35%;
     height: 4px;
-    background-color: #CA3884;
-    margin: 40px 270px; 
+    background-color: #080B12;
+    margin: 2.5rem 16.875rem; 
     border-radius: 15px;
   }
 `;
 
 export const Table = styled.table`
-  width: 800px;
-  margin-top: 20px;
+  max-width: 50rem;
+  margin-top: 1.25rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 30px;
   border-collapse: collapse;
@@ -40,13 +40,13 @@ export const Table = styled.table`
 
   thead th {
     font-weight: 600;
-    padding: 13px 10px;
+    padding: .813rem .625rem;
     text-align: center;
     background-color: #A52C6B;
   }
 
   thead th {
-    padding: 10px;
+    padding: .625rem;
     text-align: center;
     color: #000;
     position: relative;
@@ -76,21 +76,26 @@ export const Table = styled.table`
   }
 
   tbody td {
-    padding: 10px;
+    padding: .625rem;
     text-align: center;
     color: #000;
     position: relative;
   }
 
+  tbody  tr:last-child{
+    border-bottom: 2px solid #A52C6B;
+  }
+
   tbody tr .total-discount{
     color:#C93847;
-    font-weight:500;
+    font-weight:600;
+    
   }
 
   tbody tr td::after {
     content: "";
     width: 2px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #A52C6B;
     position: absolute;
     right: 0;
     top: 0;
@@ -103,8 +108,9 @@ export const Table = styled.table`
 
   tfoot tr td {
     padding: 1.25rem;
-    color: #A52C6B;
+    color: #080B12;
     font-weight:bold;
+    
   }
 
   tfoot tr td:last-child {
