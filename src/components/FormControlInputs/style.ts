@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    max-width: 50rem;
+    width: 50rem;
     border: 1px solid #A52C6B;
     border-radius: 1.875rem;
     margin-top: 2rem;
@@ -32,7 +32,7 @@ export const ContainerInputs = styled.div`
     padding: 1.25rem;
 
     .inputs {
-        max-width: 50%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         padding: .625rem;

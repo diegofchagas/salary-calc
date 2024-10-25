@@ -13,7 +13,7 @@ export const ContainerResults = styled.div`
 `;
 
 export const Table = styled.table`
-  max-width: 50rem;
+  width: 50rem;
   margin-top: 1.25rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 30px;
