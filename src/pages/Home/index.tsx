@@ -12,14 +12,16 @@ interface SalaryProps{
   netSalary: number;
   discountTotals: number;
   aliquotInss:number;
-  aliquotIrpf: number
+  aliquotIrpf: number;
+  others?:number;
 }
 
 export const Home = () => {
   const [salary, setSalary] = useState(0);
   const [disconts, setDisconts] = useState(0);
   const [dependents, setDependentes] = useState(0);
-  const [results, setResults] = useState<SalaryProps>({grossSalary: 0 , inss: 0 , irrf:0,netSalary:0, discountTotals: 0, aliquotInss:0 , aliquotIrpf:0})
+  const [isThereCalculation, setIsThereCalculation] = useState(false)
+  const [results, setResults] = useState<SalaryProps>({grossSalary: 0 , inss: 0 , irrf:0,netSalary:0, discountTotals: 0, aliquotInss:0 , aliquotIrpf:0, others:0})
   
 
   const handleCalculate = (e: FormEvent) => {
@@ -31,8 +33,9 @@ export const Home = () => {
       const {value: irrf, aliquot:aliquotIrpf} = irrfResults
       if (irrf !== undefined) {
         const totalDisconts = inss + irrf;
-        const netSalary = calculationNetSalary(salary, dependents) ?? 0;
+        const netSalary = calculationNetSalary(salary, dependents, disconts) ?? 0;
         
+        if(salary > 0) {
         setResults({
           grossSalary: salary,
           inss,
@@ -40,8 +43,12 @@ export const Home = () => {
           netSalary,
           discountTotals: totalDisconts,
           aliquotInss,
-          aliquotIrpf
+          aliquotIrpf,
+          others:disconts
         });
+
+        setIsThereCalculation(true)
+      }
       } else {
         throw new Error('Erro no cálculo do IRRF');
       }
@@ -49,7 +56,24 @@ export const Home = () => {
       throw new Error('Erro no cálculo do INSS');
     }
   };
+
   
+  const handleClear = () => {
+    setSalary(0);
+    setDependentes(0);
+    setDisconts(0);
+    setResults({
+      grossSalary: 0,
+      inss:0,
+      irrf:0,
+      netSalary:0,
+      discountTotals: 0,
+      aliquotInss:0,
+      aliquotIrpf:0,
+      others:0
+    });
+    setIsThereCalculation(false)
+  }
 
   return (
     <ContainerHome>
@@ -61,8 +85,11 @@ export const Home = () => {
       onDependents={setDependentes}
       onDiscounts={setDisconts}
       onTotalCalculation={handleCalculate}
+      onClear={handleClear}
       />
-      <Results results={results}/>
+
+      {isThereCalculation && <Results results={results}/> }
+  
 
     </ContainerHome>
   )

@@ -9,9 +9,10 @@ interface InputsProps {
   onDiscounts: (value:number) => void;
   onDependents: (value:number) => void;
   onTotalCalculation: (e: FormEvent) => void;
+  onClear: () => void;
 }
 
-export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSalary, onDiscounts,onDependents, onTotalCalculation}: InputsProps) => {
+export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSalary, onDiscounts,onDependents, onTotalCalculation,onClear}: InputsProps) => {
 
   return (
     <Container>
@@ -54,7 +55,7 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
 
         <ContainerButtons>
           <CalculateButton type="submit">Calcular</CalculateButton>
-          <CleanButton>Limpar</CleanButton>
+          <CleanButton onClick={onClear}>Limpar</CleanButton>
         </ContainerButtons>
       </Forms>
     </Container>

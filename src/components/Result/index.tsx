@@ -9,6 +9,7 @@ interface ResultsProps{
     discountTotals:number;
     aliquotInss: number;
     aliquotIrpf: number;
+    others?: number;
   }
 }
 
@@ -33,6 +34,12 @@ export const Results = ({results}: ResultsProps) => {
             <td>-</td>
             <td>R${results.grossSalary}</td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>Outros</td>
+            <td>-</td>
+            <td>-</td>
+            {results.others ? <td>R${results.others}</td> : <td>-</td>}
           </tr>
           <tr>
             <td scope="row" className="pai">
