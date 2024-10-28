@@ -2,18 +2,36 @@ import styled from "styled-components";
 
 export const ContainerResults = styled.div`
   padding: 0 1.875rem 1.875rem;
-
+  width:55rem;
   .line{
     width: 35%;
     height: 4px;
     background-color: #080B12;
-    margin: 2.5rem 16.875rem; 
+    margin: 2.5rem 16.875rem;
     border-radius: 15px;
   }
+
+   @media (max-width: 500px) {
+    .line{
+    max-width: 20%;
+    height: 4px;
+    margin: 2rem 22rem;
+    border-radius: 15px;
+    }
+
+    }
+`;
+
+export const ContainerTable = styled.div`
+ @media (max-width: 800px){
+  margin: 0 auto;
+  width:80vw;
+  overflow-x: auto;
+ }
 `;
 
 export const Table = styled.table`
-  width: 50rem;
+  width:100%;
   margin-top: 1.25rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 30px;
@@ -43,9 +61,6 @@ export const Table = styled.table`
     padding: .813rem .625rem;
     text-align: center;
     background-color: #A52C6B;
-  }
-
-  thead th {
     padding: .625rem;
     text-align: center;
     color: #000;
@@ -89,7 +104,7 @@ export const Table = styled.table`
   tbody tr .total-discount{
     color:#C93847;
     font-weight:600;
-    
+
   }
 
   tbody tr td::after {
@@ -110,10 +125,41 @@ export const Table = styled.table`
     padding: 1.25rem;
     color: #080B12;
     font-weight:bold;
-    
+
   }
 
   tfoot tr td:last-child {
     text-align: center;
   }
+
+    @media (max-width: 800px) {
+
+    caption {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  thead th {
+    padding: .525rem;
+    text-align: center;
+    font-size:1rem;
+  }
+
+  tbody{
+    overflow-x:auto;
+  }
+  tbody td {
+    padding: .525rem;
+    font-size:1rem;
+  }
+    }
+
+    tfoot tr td {
+    padding: .900rem;
+    color: #080B12;
+    font-weight:bold;
+
+  }
+
+
+
 `;

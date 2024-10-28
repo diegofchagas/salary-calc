@@ -1,4 +1,4 @@
-import { ContainerResults, Table } from "./style";
+import { ContainerResults, ContainerTable, Table } from "./style";
 
 interface ResultsProps{
   results:{
@@ -17,6 +17,7 @@ export const Results = ({results}: ResultsProps) => {
   return (
     <ContainerResults>
       <div className="line"></div>
+      <ContainerTable>
       <Table>
         <caption>Quanto vou receber:</caption>
         <thead>
@@ -71,6 +72,7 @@ export const Results = ({results}: ResultsProps) => {
           </tr>
         </tfoot>
       </Table>
+      </ContainerTable>
     </ContainerResults>
   );
 };

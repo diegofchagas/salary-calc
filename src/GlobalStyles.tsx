@@ -21,7 +21,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Inter", sans-serif;
     background: #F4F5FB;
     -webkit-font-smoothing: antialiased;
-    
   }
 
 `;

@@ -18,6 +18,28 @@ export const Container = styled.div`
             font-size:1.3rem;
         }
     }
+
+    @media (max-width: 900px) {
+    width: 43.75rem;
+}
+
+    @media (max-width: 750px) {
+    width: 35.75rem;
+}
+
+@media (max-width: 600px) {
+    width:auto;
+
+    > div {
+        padding: .400rem .640rem;
+
+        span{
+            font-size:1rem;
+        }
+    }
+}
+
+
 `;
 
 export const Forms = styled.form`
@@ -32,7 +54,7 @@ export const ContainerInputs = styled.div`
     padding: 1.25rem;
 
     .inputs {
-        width: 50%;
+        width: 80%;
         display: flex;
         flex-direction: column;
         padding: .625rem;
@@ -58,13 +80,34 @@ export const ContainerInputs = styled.div`
         }
 
     }
+
+
+    @media (max-width: 600px) {
+        flex-direction:column;
+        align-items:center;
+
+        .inputs{
+
+            padding: .400rem;
+            label{
+                font-size:.800rem;
+            }
+        }
+}
+
 `;
 
 export const ContainerButtons = styled.div`
     display:flex;
     justify-content:center;
     gap: 1.25rem;
-    padding: 0 30px 30px;
+    padding: 0 1.875rem 1.875rem;
+
+
+    @media (max-width: 600px) {
+        flex-direction:column;
+        align-items:center;
+}
 `;
 
 export const CalculateButton = styled.button`
@@ -80,6 +123,11 @@ transition: background-color 1s;
 
 &:hover{
 background-color:#A52C6B;
+}
+
+@media (max-width: 600px) {
+    padding: .800rem 1rem;
+    font-size:.800rem;
 }
 `;
 
@@ -100,4 +148,11 @@ background-color:#A52C6B;
 color: #fff;
 }
 
+@media (max-width: 600px) {
+    padding: .800rem 1rem;
+    font-size:.800rem;
+}
+
 `;
+
+
