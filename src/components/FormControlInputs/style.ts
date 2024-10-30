@@ -54,7 +54,7 @@ export const ContainerInputs = styled.div`
     padding: 1.25rem;
 
     .inputs {
-        width: 80%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         padding: .625rem;
