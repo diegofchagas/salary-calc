@@ -1,8 +1,9 @@
 import { FormEvent, useState } from "react";
 import { FormControlInputs } from "../../components/FormControlInputs"
 import { Results } from "../../components/Result"
-import { ContainerHome } from "./style"
+import { ContainerHome, FormWrapper, ResultsWrapper } from "./style"
 import { calculateIncomeTax, calculateSocialSecurityContribution, calculationNetSalary } from "../../utils/calculations";
+//import TableTwo from "./table";
 
 
 interface SalaryProps{
@@ -77,6 +78,7 @@ export const Home = () => {
 
   return (
     <ContainerHome>
+      <FormWrapper>
       <FormControlInputs 
       grossSalary={salary} 
       discounts={disconts} 
@@ -87,9 +89,10 @@ export const Home = () => {
       onTotalCalculation={handleCalculate}
       onClear={handleClear}
       />
+      </FormWrapper>
 
-      {isThereCalculation && <Results results={results}/> }
-  
+      {isThereCalculation && <ResultsWrapper><Results results={results}/> </ResultsWrapper> }
+
 
     </ContainerHome>
   )

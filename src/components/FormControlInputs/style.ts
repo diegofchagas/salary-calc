@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 50rem;
+    max-width: 50rem;
     border: 1px solid #A52C6B;
     border-radius: 1.875rem;
     margin-top: 2rem;
-    margin-left:2rem;
+    
     > div {
         text-align: center;
         font-weight:700;

@@ -26,6 +26,7 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
             <label>Salário bruto:</label>
             <input
               type="text"
+              required
               placeholder="R$0.000,00"
               value={grossSalary}
               onChange={({ target }) => onGrossSalary(parseFloat(target.value))}
@@ -36,6 +37,7 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
             <label>Descontos:</label>
             <input
               type="number"
+              required
               placeholder="R$0.000,00"
               value={discounts}
               onChange={({ target }) => onDiscounts(parseFloat(target.value))}
@@ -46,6 +48,7 @@ export const FormControlInputs = ({grossSalary, discounts, dependents, onGrossSa
             <label>Número de dependentes:</label>
             <input
               type="number"
+              required
               placeholder="0"
               value={dependents}
               onChange={({ target }) => onDependents(parseFloat(target.value))}
