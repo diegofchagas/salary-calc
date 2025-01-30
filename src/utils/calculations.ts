@@ -7,10 +7,10 @@ interface Quotes {
 }
 
 const inssQuotes : Quotes[] = [
-  {limit:1412, quote: 0.075, deduction: 0},
-  {limit:2666.68, quote: 0.09, deduction: 21.18},
-  {limit:4000.03, quote: 0.12, deduction: 101.18},
-  {limit:7786.02, quote: 0.14, deduction: 181.18}
+  {limit:1518, quote: 0.075, deduction: 0},
+  {limit:2793.89, quote: 0.09, deduction: 22.77},
+  {limit:4190.83, quote: 0.12, deduction: 106.59},
+  {limit:8157.41, quote: 0.14, deduction: 190.40}
 ]
 
 const inrpfQuotes: Quotes[] = [
